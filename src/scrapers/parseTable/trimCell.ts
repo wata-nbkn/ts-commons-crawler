@@ -1,4 +1,4 @@
-export const trimCell = (cell: string | null) => {
+export const trimCell = (cell: string | null | undefined) => {
   if (cell == null) {
     return '';
   }

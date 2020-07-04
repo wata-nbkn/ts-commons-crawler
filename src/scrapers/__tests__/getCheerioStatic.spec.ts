@@ -10,7 +10,14 @@ describe('getCheerioStatic', () => {
     </body>
 `;
 
-  it('should return cheerio object', () => {
+  it('should return cheerio object from body', () => {
+    const $ = cheerio.load(body);
+    const div = $('body');
+    const $2 = getCheerioStatic(div);
+    expect($2('h1').text()).toEqual('TEST');
+  });
+
+  it('should return cheerio object from div', () => {
     const $ = cheerio.load(body);
     const div = $('div');
     const $2 = getCheerioStatic(div);
