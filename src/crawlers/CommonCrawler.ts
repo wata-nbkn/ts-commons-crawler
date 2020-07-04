@@ -3,17 +3,19 @@ import { Logger } from 'log4js';
 import { CommonUtil } from '@wata-nbkn/ts-commons/lib/utils';
 
 export class CommonCrawler {
-  private logger: Logger;
-  private browser: puppeteer.Browser;
-  private page: puppeteer.Page;
+  protected logger: Logger;
+  protected browser: puppeteer.Browser;
+  protected page: puppeteer.Page;
+  private headless: boolean;
 
-  constructor() {
+  constructor(headless = true) {
     this.logger = CommonUtil.getLogger(__filename);
+    this.headless = headless;
   }
 
-  public async init(headless = true) {
+  public async init() {
     this.logger.debug('Initialize');
-    this.browser = await puppeteer.launch({ headless });
+    this.browser = await puppeteer.launch({ headless: this.headless });
     this.page = await this.browser.newPage();
   }
 
@@ -47,6 +49,10 @@ export class CommonCrawler {
       );
     } catch (e) {
       this.logger.error(e);
+    }
+
+    if (body == null) {
+      this.logger.warn(`selector "${selector}" is not found`);
     }
 
     this.logger.debug('Exit:: getPageBody');

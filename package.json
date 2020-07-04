@@ -1,6 +1,6 @@
 {
   "name": "@wata-nbkn/ts-commons-crawler",
-  "version": "1.0.0",
+  "version": "1.0.2",
   "description": "",
   "scripts": {
     "test": "jest --config=jest/jest.config.js --detectOpenHandles --no-cache",
