@@ -27,7 +27,7 @@ describe('CommonCrawler', () => {
   it('should get page body with class nmae', async () => {
     const body = await crawler.getPageBody('https://www.google.com/', '.ctr-p');
     expect(body).toBeTruthy();
-    expect(body).toMatch(/^<span class="ctr-p" id="body">/);
+    expect(body).toMatch(/^<div class="ctr-p" id="viewport">/);
   });
 
   it('should return null with an invalid page', async () => {

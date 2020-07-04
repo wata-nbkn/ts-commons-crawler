@@ -17,7 +17,7 @@ export const parseTable = (body: string, options?: ParseTableOptions) => {
 
   const $ = cheerio.load(body);
   const table = $(tableSelector);
-  rows = parseTableRows($, table);
+  rows = parseTableRows(table);
 
   if (firstLineAsHeader && rows[0]) {
     headers = rows.shift() || [];

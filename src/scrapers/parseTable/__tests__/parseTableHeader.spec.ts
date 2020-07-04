@@ -7,7 +7,7 @@ describe('parseTableHeader', () => {
     const $ = cheerio.load(basicTable);
     const table = $('table');
 
-    const result = parseTableHeader($, table);
+    const result = parseTableHeader(table);
     expect(result).toEqual(['head1', 'head2']);
   });
 
@@ -15,7 +15,7 @@ describe('parseTableHeader', () => {
     const $ = cheerio.load(theadWithTd);
     const table = $('table');
 
-    const result = parseTableHeader($, table);
+    const result = parseTableHeader(table);
     expect(result).toEqual(['head1', 'head2']);
   });
 
@@ -23,7 +23,7 @@ describe('parseTableHeader', () => {
     const $ = cheerio.load(noTheadWithTh);
     const table = $('table');
 
-    const result = parseTableHeader($, table);
+    const result = parseTableHeader(table);
     expect(result).toEqual(['head1', 'head2']);
   });
 
@@ -31,15 +31,15 @@ describe('parseTableHeader', () => {
     const $ = cheerio.load(noTheadWithTd);
     const table = $('table');
 
-    const result = parseTableHeader($, table);
-    expect(result).toEqual([]);
+    const result = parseTableHeader(table);
+    expect(result).toEqual(['head1', 'head2']);
   });
 
   it('should return empty array with an invalid table', () => {
     const $ = cheerio.load(invalidTable);
     const table = $('table');
 
-    const result = parseTableHeader($, table);
+    const result = parseTableHeader(table);
     expect(result).toEqual([]);
   });
 });
