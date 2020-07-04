@@ -15,7 +15,19 @@ describe('CommonCrawler', () => {
   it('should get page body', async () => {
     const body = await crawler.getPageBody('https://www.google.com/');
     expect(body).toBeTruthy();
-    expect(body).toMatch('<body');
+    expect(body).toMatch(/^<body/);
+  });
+
+  it('should get page body with id', async () => {
+    const body = await crawler.getPageBody('https://www.google.com/', '#main');
+    expect(body).toBeTruthy();
+    expect(body).toMatch(/^<div class="content" id="main">/);
+  });
+
+  it('should get page body with class nmae', async () => {
+    const body = await crawler.getPageBody('https://www.google.com/', '.ctr-p');
+    expect(body).toBeTruthy();
+    expect(body).toMatch(/^<div class="ctr-p" id="viewport">/);
   });
 
   it('should return null with an invalid page', async () => {

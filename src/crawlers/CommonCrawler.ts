@@ -22,7 +22,7 @@ export class CommonCrawler {
     this.logger.debug('Exit');
   }
 
-  public async getPageBody(url: string) {
+  public async getPageBody(url: string, selector = 'body') {
     this.logger.debug('Enter:: getPageBody');
 
     try {
@@ -35,7 +35,16 @@ export class CommonCrawler {
 
     let body = null;
     try {
-      body = await this.page.evaluate(() => document.body.outerHTML);
+      body = await this.page.evaluate(
+        (selector) => {
+          const calender = document.querySelectorAll(selector);
+          if (calender && calender[0]) {
+            return calender[0].outerHTML;
+          }
+          return null;
+        },
+        [selector]
+      );
     } catch (e) {
       this.logger.error(e);
     }
