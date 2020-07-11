@@ -1,9 +1,10 @@
 import { CommonUtil } from '@wata-nbkn/ts-commons/lib/utils';
+import { INTERNAL_LOGDIR_PATH } from 'consts';
 import { trimCell } from './trimCell';
 import { getCheerioStatic } from '../getCheerioStatic';
 
 export const parseTableHeader = (table: Cheerio) => {
-  const logger = CommonUtil.getLogger(__filename);
+  const logger = CommonUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/parseTableHeader`);
   logger.debug('Enter [parseTableHeader]');
 
   const $ = getCheerioStatic(table);

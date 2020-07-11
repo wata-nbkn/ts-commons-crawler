@@ -1,5 +1,6 @@
 import * as cheerio from 'cheerio';
 import { CommonUtil } from '@wata-nbkn/ts-commons/lib/utils';
+import { INTERNAL_LOGDIR_PATH } from 'consts';
 import { parseTableRows } from './parseTableRows';
 
 export type ParseTableOptions = {
@@ -9,7 +10,7 @@ export type ParseTableOptions = {
 
 export const parseTable = (body: string, options?: ParseTableOptions) => {
   const { tableSelector = 'table', firstLineAsHeader = true } = options || {};
-  const logger = CommonUtil.getLogger(__filename);
+  const logger = CommonUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/parseTable`);
   let headers: string[] = [];
   let rows: string[][] = [];
 

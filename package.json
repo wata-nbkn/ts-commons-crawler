@@ -1,15 +1,15 @@
 {
   "name": "@wata-nbkn/ts-commons-crawler",
-  "version": "1.0.6",
+  "version": "1.0.7",
   "description": "",
   "scripts": {
-    "test": "jest --config=jest/jest.config.js --detectOpenHandles --no-cache",
+    "test": "jest --config=jest/jest.config.js",
     "version-up": "npm version patch -git-tag-version false",
     "build": "npm run version-up && ttsc -p tsconfig.build.json"
   },
   "author": "wata-nbkn",
   "dependencies": {
-    "@wata-nbkn/ts-commons": "^1.0.18",
+    "@wata-nbkn/ts-commons": "^1.0.21",
     "cheerio": "^1.0.0-rc.3",
     "log4js": "5.3.0",
     "puppeteer": "^4.0.1",

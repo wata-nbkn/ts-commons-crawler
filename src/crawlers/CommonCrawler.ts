@@ -1,6 +1,7 @@
 import * as puppeteer from 'puppeteer';
 import { Logger } from 'log4js';
 import { CommonUtil } from '@wata-nbkn/ts-commons/lib/utils';
+import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 export class CommonCrawler {
   protected logger: Logger;
@@ -8,8 +9,9 @@ export class CommonCrawler {
   protected page: puppeteer.Page;
   private headless: boolean;
 
-  constructor(headless = true) {
-    this.logger = CommonUtil.getLogger(__filename);
+  constructor(options?: { headless?: boolean; logDirPath?: string }) {
+    const { headless = true, logDirPath } = options || {};
+    this.logger = CommonUtil.getLogger(logDirPath || `${INTERNAL_LOGDIR_PATH}/CommonCrawler`);
     this.headless = headless;
   }
 
@@ -39,9 +41,9 @@ export class CommonCrawler {
     try {
       body = await this.page.evaluate(
         (selector) => {
-          const calender = document.querySelectorAll(selector);
-          if (calender && calender[0]) {
-            return calender[0].outerHTML;
+          const elem = document.querySelector(selector);
+          if (elem) {
+            return elem.outerHTML;
           }
           return null;
         },
