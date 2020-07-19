@@ -1,2 +1,13 @@
 export { CommonCrawler, getPageByCurl } from './crawlers';
-export { parseTable, convertTableToJson, parseTableAsJson, getCheerioStatic, loadFileAsCheerio } from './scrapers';
+export {
+  parseTable,
+  parseTableFromHtml,
+  parseTableHeader,
+  parseTableRows,
+  convertTableToJson,
+  parseTableAsJson,
+  getCheerioStatic,
+  loadFileAsCheerio,
+  trimCell,
+  ParsedTable,
+} from './scrapers';
