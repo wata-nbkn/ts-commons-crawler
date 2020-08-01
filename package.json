@@ -1,6 +1,6 @@
 {
   "name": "@wata-nbkn/ts-commons-crawler",
-  "version": "1.0.12",
+  "version": "1.0.13",
   "description": "",
   "scripts": {
     "test": "jest --config=jest/jest.config.js",
@@ -9,7 +9,7 @@
   },
   "author": "wata-nbkn",
   "dependencies": {
-    "@wata-nbkn/ts-commons": "^1.0.21",
+    "@wata-nbkn/ts-commons": "^1.0.30",
     "cheerio": "^1.0.0-rc.3",
     "log4js": "5.3.0",
     "puppeteer": "^4.0.1",
