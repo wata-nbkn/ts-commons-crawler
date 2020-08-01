@@ -5,6 +5,7 @@ export {
   parseTableHeader,
   parseTableRows,
   convertTableToJson,
+  parseTableAsJsonFromHtml,
   parseTableAsJson,
   getCheerioStatic,
   loadFileAsCheerio,

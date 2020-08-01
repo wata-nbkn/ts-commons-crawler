@@ -5,7 +5,7 @@ import { INTERNAL_LOGDIR_PATH } from 'consts';
 export async function getPageByCurl(url: string, options?: object): Promise<string | null> {
   const logger = CommonUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/getPageByCurl`);
 
-  logger.debug(`Access to ${url}`);
+  logger.info(`Access to ${url}`);
   return new Promise((resolve, reject) => {
     request({ uri: url, ...options }, (error, res, body: string) => {
       if (error) {

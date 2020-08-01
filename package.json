@@ -1,6 +1,6 @@
 {
   "name": "@wata-nbkn/ts-commons-crawler",
-  "version": "1.0.10",
+  "version": "1.0.12",
   "description": "",
   "scripts": {
     "test": "jest --config=jest/jest.config.js",

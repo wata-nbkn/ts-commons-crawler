@@ -1,12 +1,9 @@
-import * as cheerio from 'cheerio';
-import { parseTableAsJson } from '../parseTableAsJson';
+import { parseTableAsJsonFromHtml } from '../parseTableAsJsonFromHtml';
 import { basicTable } from '../parseTable/__tests__/testData';
 
-describe('parseTableAsJson', () => {
+describe('parseTableAsJsonFromHtml', () => {
   it('should parse table as json', () => {
-    const $ = cheerio.load(basicTable);
-    const table = $('table');
-    const result: any = parseTableAsJson(table);
+    const result: any = parseTableAsJsonFromHtml(basicTable);
     expect(result[0].head1).toEqual('val11');
     expect(result[0].head2).toEqual('val12');
     expect(result[1].head1).toEqual('val21');
@@ -16,9 +13,7 @@ describe('parseTableAsJson', () => {
   });
 
   it('should parse table as json with selector', () => {
-    const $ = cheerio.load(basicTable);
-    const table = $('table');
-    const result: any = parseTableAsJson(table, { tableSelector: '.test-table' });
+    const result: any = parseTableAsJsonFromHtml(basicTable, { tableSelector: '.test-table' });
     expect(result[0].head1).toEqual('val11');
     expect(result[0].head2).toEqual('val12');
     expect(result[1].head1).toEqual('val21');
