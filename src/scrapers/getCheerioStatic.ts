@@ -8,5 +8,5 @@ export const getCheerioStatic = (elem: Cheerio) => {
   } else {
     html = elem.html() || '';
   }
-  return cheerio.load(html);
+  return cheerio.load(html, { decodeEntities: false });
 };

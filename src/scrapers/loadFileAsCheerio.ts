@@ -6,6 +6,6 @@ export const loadFileAsCheerio = (filePath: string) => {
     return null;
   }
   const fileContent = fs.readFileSync(filePath, 'utf8');
-  const $ = cheerio.load(fileContent);
+  const $ = cheerio.load(fileContent, { decodeEntities: false });
   return $;
 };

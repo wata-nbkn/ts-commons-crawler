@@ -7,6 +7,7 @@ describe('loadFileAsCheerio', () => {
     expect($).toBeTruthy();
     if ($) {
       expect($('h1').text()).toEqual('TEST');
+      expect($('h2').html()).toEqual('テスト');
     }
   });
 

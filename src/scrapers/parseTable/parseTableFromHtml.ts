@@ -8,7 +8,7 @@ export type ParseTableOptions = {
 
 export const parseTableFromHtml = (body: string, options?: ParseTableOptions) => {
   const { tableSelector = 'table', firstLineAsHeader = true } = options || {};
-  const $ = cheerio.load(body);
+  const $ = cheerio.load(body, { decodeEntities: false });
   const table = $(tableSelector);
   return parseTable(table, { firstLineAsHeader });
 };
