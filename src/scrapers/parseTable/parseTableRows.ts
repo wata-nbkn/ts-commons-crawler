@@ -1,8 +1,10 @@
 import { MathUtil } from '@wata-nbkn/ts-commons/lib/utils';
 import { trimCell } from './trimCell';
+import { parseCellAsArray } from './parseCellAsArray';
 import { getCheerioStatic } from '../getCheerioStatic';
 
-export const parseTableRows = (table: Cheerio) => {
+export const parseTableRows = (table: Cheerio, options?: { ignoreLineBreak: boolean }) => {
+  const { ignoreLineBreak = true } = options || {};
   const rows: string[][] = [];
 
   const $ = getCheerioStatic(table);
@@ -12,11 +14,16 @@ export const parseTableRows = (table: Cheerio) => {
     const cells: string[] = [];
 
     const pushCell = (v: CheerioElement) => {
-      let value: any = trimCell($(v).text());
-      if (MathUtil.isNumber(value)) {
-        value = Number(value);
+      let trimmedValue: any;
+      if (ignoreLineBreak) {
+        trimmedValue = trimCell($(v).text());
+        if (MathUtil.isNumber(trimmedValue)) {
+          trimmedValue = Number(trimmedValue);
+        }
+      } else {
+        trimmedValue = parseCellAsArray($(v).html());
       }
-      cells.push(value);
+      cells.push(trimmedValue);
     };
 
     $(tr)
