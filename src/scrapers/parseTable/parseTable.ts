@@ -1,4 +1,4 @@
-import { CommonUtil } from '@wata-nbkn/ts-commons/lib/utils';
+import { LogUtil } from '@wata-nbkn/ts-commons/lib/utils';
 import { INTERNAL_LOGDIR_PATH } from 'consts';
 import { parseTableRows } from './parseTableRows';
 
@@ -10,8 +10,8 @@ export interface ParsedTable {
 export const parseTable = (table: Cheerio, options?: { firstLineAsHeader?: boolean }): ParsedTable => {
   const { firstLineAsHeader = true } = options || {};
 
-  const logger = CommonUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/parseTable`);
-  logger.debug('Enter [parseTable]');
+  const logger = LogUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/parseTable`);
+  logger.debug('Enter:: [parseTable]');
 
   const rows: string[][] = parseTableRows(table);
   let headers: string[] = [];
@@ -21,7 +21,7 @@ export const parseTable = (table: Cheerio, options?: { firstLineAsHeader?: boole
   }
 
   logger.trace(`rows = ${rows.join(', ')}`);
-  logger.debug('Exit [parseTable]');
+  logger.debug('Exit:: [parseTable]');
 
   return {
     headers,

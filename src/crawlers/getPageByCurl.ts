@@ -1,9 +1,9 @@
 import * as request from 'request';
-import { CommonUtil } from '@wata-nbkn/ts-commons/lib/utils';
+import { LogUtil } from '@wata-nbkn/ts-commons/lib/utils';
 import { INTERNAL_LOGDIR_PATH } from 'consts';
 
 export async function getPageByCurl(url: string, options?: object): Promise<string | null> {
-  const logger = CommonUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/getPageByCurl`);
+  const logger = LogUtil.getLogger(`${INTERNAL_LOGDIR_PATH}/getPageByCurl`);
 
   logger.info(`Access to ${url}`);
   return new Promise((resolve, reject) => {
