@@ -45,7 +45,8 @@ export class CommonCrawler {
   }
 
   public async hasElement(selector: string) {
-    return this.getOuterHtml(selector) !== null;
+    const html = await this.getOuterHtml(selector);
+    return html !== null;
   }
 
   public async getPageBody(url: string, selector = 'body') {

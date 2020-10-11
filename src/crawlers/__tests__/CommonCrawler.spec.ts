@@ -41,6 +41,11 @@ describe('CommonCrawler', () => {
     expect(result).toBeTruthy();
   });
 
+  it('should not verify non existing element', async () => {
+    const result = await crawler.hasElement('#hogehoge');
+    expect(result).toBeFalsy();
+  });
+
   it('should get cookie string', async () => {
     const cookie = await crawler.getCookieStr();
     expect(cookie).toBeTruthy();
