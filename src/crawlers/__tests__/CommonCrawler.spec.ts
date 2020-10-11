@@ -30,6 +30,23 @@ describe('CommonCrawler', () => {
     expect(body).toMatch(/^<div class="ctr-p" id="viewport">/);
   });
 
+  it('should get the outer html', async () => {
+    const html = await crawler.getOuterHtml('#searchform');
+    expect(html).toBeTruthy();
+    expect(html).toMatch(/id="searchform"/);
+  });
+
+  it('should verify an element', async () => {
+    const result = await crawler.hasElement('#searchform');
+    expect(result).toBeTruthy();
+  });
+
+  it('should get cookie string', async () => {
+    const cookie = await crawler.getCookieStr();
+    expect(cookie).toBeTruthy();
+    expect(cookie.length).toBeGreaterThan(1);
+  });
+
   it('should return null with an invalid page', async () => {
     const result = await crawler.getPageBody('http://localhost:1111');
     expect(result).toBeNull();

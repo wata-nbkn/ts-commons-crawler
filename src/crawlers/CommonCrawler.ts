@@ -26,20 +26,9 @@ export class CommonCrawler {
     this.logger.debug('Exit CommonCrawler');
   }
 
-  public async getPageBody(url: string, selector = 'body') {
-    this.logger.debug('Enter:: getPageBody');
-
+  public async getOuterHtml(selector: string) {
     try {
-      await this.page.goto(url, { waitUntil: 'domcontentloaded' });
-      await this.page.waitFor(2000);
-    } catch (e) {
-      this.logger.error(e);
-      return null;
-    }
-
-    let body = null;
-    try {
-      body = await this.page.evaluate(
+      return await this.page.evaluate(
         (selector) => {
           const elem = document.querySelector(selector);
           if (elem) {
@@ -51,14 +40,37 @@ export class CommonCrawler {
       );
     } catch (e) {
       this.logger.error(e);
+      return null;
+    }
+  }
+
+  public async hasElement(selector: string) {
+    return this.getOuterHtml(selector) !== null;
+  }
+
+  public async getPageBody(url: string, selector = 'body') {
+    this.logger.debug('Enter:: getPageBody');
+
+    try {
+      await this.page.goto(url, { waitUntil: 'domcontentloaded' });
+      await this.page.waitFor(2000);
+    } catch (e) {
+      this.logger.error(e);
+      return null;
     }
 
+    const body = await this.getOuterHtml(selector);
     if (body == null) {
       this.logger.warn(`selector "${selector}" is not found`);
     }
 
     this.logger.debug('Exit:: getPageBody');
     return body;
+  }
+
+  public async getCookieStr() {
+    const cookies = await this.page.cookies();
+    return cookies.map((cookie) => `${cookie.name}=${cookie.value}`).join('; ');
   }
 }
 
