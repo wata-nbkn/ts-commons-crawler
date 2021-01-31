@@ -1,6 +1,6 @@
 # ts-commons-crawler
 
-This is an utility module project for TypeScript Crawler/Scraper.
+Utility modules for TypeScript Crawler/Scraper.
 
 ## How to use
 
