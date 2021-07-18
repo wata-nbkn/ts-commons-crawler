@@ -15,10 +15,20 @@ export class CommonCrawler {
     this.headless = headless;
   }
 
-  public async init() {
+  public async init(options?: { defaultTimeoutMs?: number; navigationTimeoutMs?: number }) {
+    const { defaultTimeoutMs, navigationTimeoutMs } = options || {};
+
     this.logger.debug('Initialize');
     this.browser = await puppeteer.launch({ headless: this.headless });
     this.page = await this.browser.newPage();
+
+    if (defaultTimeoutMs) {
+      this.page.setDefaultTimeout(defaultTimeoutMs);
+    }
+
+    if (navigationTimeoutMs) {
+      this.page.setDefaultNavigationTimeout(navigationTimeoutMs);
+    }
   }
 
   public async exit() {
